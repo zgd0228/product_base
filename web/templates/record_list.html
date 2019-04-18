@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block table %}
+    <div class="luffy-container" style="margin-top: 15px">
+        {% for foo in form %}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ foo.note }}
+                    <div style="display: inline-block;float: right">
+                        <span>{{ foo.date }}</span>
+                    <span style="color: #1c5a9c;margin-left: 5px">
+                        {{ foo.customer }}
+                    </span>
+
+                    </div>
+                </div>
+
+
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block table %}
+
+    {% if search_group_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-filter" aria-hidden="true"></i> 快速筛选
+            </div>
+            <div class="panel-body">
+                <div class="search-group">
+                    {% for row in search_group_list %}
+                        <div class="row">
+                            {% for obj in row %}
+                                {{ obj|safe }}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if search_list %}
+        <div style="float: right;">
+            <form method="GET" class="form-inline">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="q" value="{{ search_value }}" placeholder="关键字搜索">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {% if add_btn %}
+            <div style="margin:10px">
+                {{ add_btn|safe }}
+            </div>
+        {% endif %}
+
+        <div class="table_form">
+            {% for foo in body_list %}
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding-bottom: 4px">
+                        {{ foo.2 }}
+                        <div style="display: inline-block;float: right">
+                            <span>{{ foo.3 }}</span>
+                            <span style="color: #1c5a9c;margin-left: 5px">
+                                {{ foo.4 }}
+                            </span>
+                        </div>
+                        <div style=" margin: 2px 0 0 10px;font-size: 10px;padding-top: 8px">
+                            <div style="display: inline-block">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <span>{{ foo.0 }}</span>
+                            </div>
+                            <div style="color: #1c5a9c;margin-left: 8px;display: inline-block">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span>{{ foo.1|date:"Y-m-d" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {{ pagination.page_html|safe }}
+                </ul>
+            </nav>
+        </div>
+    </form>
+{% endblock %}

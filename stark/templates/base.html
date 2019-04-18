@@ -1,0 +1,88 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理系统</title>
+    <link rel="stylesheet" href="{% static 'stark/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'stark/boot/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'stark/css/base_css.css' %}">
+    <link rel="stylesheet" href="{% static 'stark/css/search-group.css' %}">
+    <link rel="stylesheet" href="{% static 'datetimepicker/css/bootstrap-datetimepicker.min.css' %}">
+    {% block css %}
+    {% endblock %}
+
+</head>
+<body>
+<div class="head">
+    <div class="head_logo">
+        <a href="">
+            <img src="{% static 'stark/imgs/luffy-study-logo.png' %}" alt="">
+            <span>客户管理系统</span>
+        </a>
+    </div>
+    <div class="left">
+        <a href="" class="menu_list">资产管理</a>
+        <a href="" class="menu_list">用户信息</a>
+        <a href="" class="menu_list">管理平台</a>
+        <div class="menu_list">
+            <span>使用说明</span>
+            <i class="fa fa-caret-down state" aria-hidden="true"></i>
+            <div class="menu_item">
+                <a href="">1</a>
+                <a href="">2</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="right">
+        <div class="user right">
+            <a href="">
+                <img src="{% static 'stark/imgs/default.png' %}" alt="" class="img">
+            </a>
+
+        </div>
+        <a href="/logout/"  class="user_menu right">注销
+        <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
+        <a href="" class="user_menu right">任务
+            <i class="fa fa-bell-o" aria-hidden="true"></i>
+            <span class="badge">0</span>
+        </a>
+        <a href="" class="user_menu right">通知
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <span class="badge">0</span>
+        </a>
+        <a href="" class="user_menu right">消息
+            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+            <span class="badge">0</span>
+        </a>
+
+    </div>
+</div>
+
+
+<div class="content">
+{% load my_tags %}
+    <div class="menu">
+        {% menu request %}
+    </div>
+    <div class="contain">
+                {% bar request %}
+        <div class="right_content">
+            {% block table %}
+            {% endblock %}
+
+        </div>
+
+    </div>
+</div>
+<script src="{% static 'stark/jquery/base.js' %}"></script>
+<script src="{% static 'stark/jquery/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'datetimepicker/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script src="{% static 'datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' %}"></script>
+<script src="{% static 'js/menu_display.js' %}"></script>
+    {% block js %}
+    {% endblock %}
+</body>
+</html>
